@@ -1,0 +1,59 @@
+.mainContainer{
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background-color: green;
+}
+
+.handle1{
+    background-color: pink;
+    cursor: move;
+}
+
+.flexContainer{
+    width: 600px;
+    height: 400px;
+    background-color: purple;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chatContainer{
+    background-color: blue;
+    margin-top: auto;
+}
+
+.selectorContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    flex-grow: 0.3;
+}
+
+.activeTab{
+    background-color: red;
+    padding: 5px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.tab{
+    background-color: orange;
+    padding: 5px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.tabContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.activeContent{
+    background-color: red;
+}
+
+.content{
+    display: none;
+}
