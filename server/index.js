@@ -5,6 +5,7 @@ import http from 'http';
 import { Server } from 'socket.io';
 import cookieParser from 'cookie-parser';
 import * as userRoutes from './routes/user.routes.js';
+import * as profileRoutes from './routes/profile.routes.js';
 
 
 
@@ -15,7 +16,16 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json());
+
+
+
+// Routes
 app.use(userRoutes.router);
+app.use(profileRoutes.router);
+
+
+
+
 app.use(cookieParser());
 
 const server = http.createServer(app); // http server

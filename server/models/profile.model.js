@@ -1,8 +1,27 @@
 import mongoose from "mongoose";
 
+
+
+const isValidUrl = (v) => {
+    try {
+        new URL(v);
+        return true;
+    } catch (err) {
+        return false;
+    }
+};
+
+
+
+
+
+
 const ProfileSchema = new mongoose.Schema({
-    username:{
-        type: mongoose.Schema.Types.ObjectId, ref: 'users'
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users',
+        required: true,
+        unique: true
     },
     birthdate:{
         type: Date,
@@ -13,7 +32,13 @@ const ProfileSchema = new mongoose.Schema({
         required: [true, "Country is required"]
     },
     languages:{
-        type: String,
+        type: [String],
+        validate: {
+            validator: function(v){
+                return v.length <= 3 && v.length >= 1;
+            },
+            message: "At least one language is required."
+        },
         required: [true, "At least one language is required"]
     },
     currentObsession:{
@@ -22,11 +47,30 @@ const ProfileSchema = new mongoose.Schema({
     },
     profilePictureUrl:{
         type: String,
+        validate: [
+            {
+                validator: function(v){
+                    return this.profilePicture || v;
+                },
+                message: "Profile picture is required."
+            },
+            {
+                validator: isValidUrl,
+                message: "Invalid URL"
+            }
+                
+        ]
         
     },
     profilePicture:{
         type: Buffer,
-        contentType: String
+        contentType: String,
+        validate: {
+            validator: function(v){
+                return this.profilePictureUrl || v;
+            },
+            message: "Profile picture is required."
+        }
     },
     favoriteArtists:{
         type: [String],
