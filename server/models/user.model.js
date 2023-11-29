@@ -23,7 +23,12 @@ const UserSchema = new mongoose.Schema({
     profileCreated:{
         type: Boolean,
         default: false
+    },
+    profile:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'profiles', default: null
     }
+    
 }, {timestamps: true});
 
 const User = mongoose.model('users', UserSchema);

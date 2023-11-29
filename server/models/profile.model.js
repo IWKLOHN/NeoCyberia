@@ -17,15 +17,10 @@ const isValidUrl = (v) => {
 
 
 const ProfileSchema = new mongoose.Schema({
-    userId:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'users',
-        required: true,
-        unique: true
-    },
-    birthdate:{
+    
+    birthday:{
         type: Date,
-        required: [true, "Birthdate is required"]
+        required: [true, "Birthday is required"]
     },
     country:{
         type: String,
@@ -50,12 +45,14 @@ const ProfileSchema = new mongoose.Schema({
         validate: [
             {
                 validator: function(v){
-                    return this.profilePicture || v;
+                    return this.profilePicture || v || v === "";
                 },
                 message: "Profile picture is required."
             },
             {
-                validator: isValidUrl,
+                validator: function (v){
+                    return v === "" || isValidUrl(v);
+                },
                 message: "Invalid URL"
             }
                 

@@ -6,6 +6,7 @@ import { Server } from 'socket.io';
 import cookieParser from 'cookie-parser';
 import * as userRoutes from './routes/user.routes.js';
 import * as profileRoutes from './routes/profile.routes.js';
+import jwt from 'jsonwebtoken';
 
 
 
@@ -43,16 +44,30 @@ mongoose.connect("mongodb://127.0.0.1:27017/neocyberia") // connect to mongodb
 });
 
 io.on('connection', (socket) => {
-    console.log('a user connected')
+    const token = socket.handshake.query.token; // get token from query
+    console.log('Token', token);
+    if(!token){
+        console.log('No token')
+        return;
+    }
+    jwt.verify(token,"jwt-secret-key", (err, decoded) =>{
+        if(err){
+            console.log('Failed to verify token:',err)
+            return
+        }else{
+            socket.username = decoded.username // set username
+        }
+    });
+    console.log('a user connected');
     socket.on('message', (body)=>{ // listen for message event
         console.log(body)
         socket.broadcast.emit('message',{ // emit message event
             body,
-            from: socket.id.slice(8)
+            from: socket.username
         
         })
     })
-})
+});
 
 app.listen(8080 , () => { console.log('CRUD port 8080') });
 server.listen(8081, () => { console.log('Socket.io port 8081') });

@@ -3,11 +3,31 @@ import { useState, useEffect, useRef } from 'react';
 import Draggable from 'react-draggable';
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:8081');
-
 
 
 export const ChatComponent = () => {
+
+    const [socket, setSocket] = useState(null);
+
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    
+    
+    
+    
+    
+    
+    useEffect(() => {
+        const token = getCookie('token');
+        const newSocket = io('http://localhost:8081',
+        {query: {token: token}});
+        setSocket(newSocket);
+        return () => newSocket.close();
+    },[])
+
 
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [message, setMessage] = useState('');
@@ -33,20 +53,25 @@ export const ChatComponent = () => {
         }
         setMessages([...messages, newMessage]);
         socket.emit('message', message);
+        setMessage('');
 
     }
 
     const recieveMessage = (message) => {
-        setMessages([state => [...state, message]]);
+        setMessages(state => [...state, message]);
     }
     
 
     useEffect(() => { // Aqui recibiendo mensajes desde otro cliente.
+        if(socket){
         socket.on("message", recieveMessage);
-        return()=>{
-            socket.off("message", recieveMessage);
         }
-    }, [])
+        return()=>{
+            if(socket){
+                socket.off("message", recieveMessage);
+            }
+        }
+    }, [socket, recieveMessage])
 
     return (
         <Draggable position={position} onDrag={handleDrag} bounds="body" handle='.handle'>
@@ -121,6 +146,7 @@ export const ChatComponent = () => {
                         </ul>
                         <form onSubmit={handleSend}>
                             <input type="text" placeholder='Write message...'
+                                value={message}
                                 onChange={(e)=> setMessage(e.target.value)}/>
                             <button>Send</button>
                         </form>

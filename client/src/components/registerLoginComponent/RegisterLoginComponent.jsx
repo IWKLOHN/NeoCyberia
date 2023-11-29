@@ -96,8 +96,10 @@ export const RegisterLoginComponent = () => {
             
             {/* TABS */ }
             <div className={styles.tabContainer}>
-                <button onClick={() => tabSwitch(1)} className={activeTab === 1 ? styles.activeTab : styles.tab}>Login</button>
-                <button onClick={() => tabSwitch(2)} className={activeTab === 2 ? styles.activeTab : styles.tab}>Register</button>
+                <button onClick={() => tabSwitch(1)} 
+                    className={activeTab === 1 ? styles.activeTab : styles.tab}>Login</button>
+                <button onClick={() => tabSwitch(2)} 
+                    className={activeTab === 2 ? styles.activeTab : styles.tab}>Register</button>
             </div>
                 
                 
@@ -105,7 +107,8 @@ export const RegisterLoginComponent = () => {
         
                 {/* LOGIN */ }
             
-                <form onSubmit={handleLogin} className={activeTab === 1 ? styles.activeContent : styles.content}>
+                <form onSubmit={handleLogin} 
+                    className={activeTab === 1 ? styles.activeContent : styles.content}>
                     <label htmlFor="loginInput">Username or Email:</label>
                         <input type="text" 
                             placeholder='Enter Username or Email'
@@ -121,7 +124,8 @@ export const RegisterLoginComponent = () => {
                                     
                 
                 {/* REGISTER */ }
-                <form onSubmit={handleRegister} className={ activeTab === 2 ? styles.activeContent : styles.content} >
+                <form onSubmit={handleRegister} 
+                    className={ activeTab === 2 ? styles.activeContent : styles.content} >
                     <label htmlFor="username">Username:</label>
                         <input type="text" 
                             placeholder='Enter Username'

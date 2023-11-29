@@ -1,17 +1,17 @@
 import jwt from 'jsonwebtoken';
 
-const middlewareJwt = (req, res, next) => {
-    const jwtValue = req.headers.authorization
-    if (!jwtValue) {
-        return res.status(401).json({ message: "Unauthorized" });
-    }
-    try{
-        const data = jwt.verify(jwtValue, "jwtsecretkey");
+const authJwt = (req, res, next) => {
+    const token = req.headers('Authorization');
+    try {
+        if(!token){
+            throw new Error('Unauthorized');
+        }
+        const user = jwt.verify(token, "jwt-secret-key");
+        req.user = user;
         next();
-    }catch(error){
-        return res.status(401).json({ message: "Unauthorized" });
+    } catch (error) {
+        return res.status(403).json({ message: 'Forbidden', error });
     }
-}
+};
 
-
-export { middlewareJwt}
+export { authJwt };
