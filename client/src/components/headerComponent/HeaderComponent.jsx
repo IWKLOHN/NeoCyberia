@@ -26,15 +26,26 @@ export const HeaderComponent = () => {
         try {
             let result = await axios.get(`http://localhost:8080/getUserAndProfileById/${userId}`,
                 {headers: {"Authorization": `Bearer ${token}`}}); 
-            const profilePicture = result.data.user.profile.profilePicture.data; 
-            const blob = new Blob([new Uint8Array(profilePicture)], {type: 'image/png'});
+            console.log(result);
+            const profilePictureUrl = result.data.user.profile.profilePictureUrl || null;
+            const profilePicture = result.data.user.profile.profilePicture ? result.data.user.profile.profilePicture.data : null;
+            //const profilePicture = result.data.user.profile.profilePicture.data
+            
+            if (profilePictureUrl) {
+                setData({...result.data, profilePicture: profilePictureUrl});
+                return;
+            }else if (profilePicture) 
+            {const blob = new Blob([new Uint8Array(profilePicture)], {type: 'image/png'});
             const blobURL = URL.createObjectURL(blob);
             //console.log(blobURL);
             setData({...result.data, profilePicture: blobURL});
+        }
         } catch (error) {
             console.log(error);
         }
     };
+            
+            
     
             
     
@@ -57,7 +68,7 @@ export const HeaderComponent = () => {
             <nav className={styles.navContainer}>
                 <div className={styles.left}>
                     <a className={styles.imgContainer} href=''>
-                        <img src={data.profilePicture}
+                        <img src={data.profilePicture ? data.profilePicture : data.profilePictureUrl}
                             alt='Profile Picture' />
                     </a>
                     {data.user &&<a href=''>{data.user.username}</a>}
