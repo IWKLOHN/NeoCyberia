@@ -22,7 +22,7 @@ export const ChatComponent = () => {
     
     useEffect(() => {
         const token = getCookie('token');
-        const newSocket = io('http://localhost:8081',
+        const newSocket = io('http://localhost:8080',
         {query: {token: token}});
         setSocket(newSocket);
         return () => newSocket.close();
@@ -89,8 +89,10 @@ export const ChatComponent = () => {
                         
                         {/*TABS*/}
                         <div className={styles.tabContainer}>
-                        <button onClick={()=> tabSwitch(1)} className={activeTab === 1 ? styles.activeTab : styles.tab}>Rooms</button>
-                        <button onClick={()=> tabSwitch(2)} className={activeTab === 2 ? styles.activeTab : styles.tab}>Users</button>
+                        <button onClick={()=> tabSwitch(1)} 
+                            className={activeTab === 1 ? styles.activeTab : styles.tab}>Rooms</button>
+                        <button onClick={()=> tabSwitch(2)} 
+                            className={activeTab === 2 ? styles.activeTab : styles.tab}>Users</button>
                         </div>
                         
                         {/*LISTA DE SALAS*/ }
@@ -112,20 +114,18 @@ export const ChatComponent = () => {
                         {/*LISTA DE USUARIOS CONECTADOS*/}
                         <div className={activeTab === 2 ? styles.activeContent : styles.content}> 
                             <ul>
-                                <li>User
-                                    <button>Profile</button>
-                                </li>
-                                <li>User</li>
-                                <li>User</li>
-                                <li>User</li>
-                                <li>User</li>
-                                <li>User</li>
-                                <li>User</li>
-                                <li>User</li>
-                                <li>User</li>
-                                <li>User</li>
+                                    <li>User</li>
+                                    <li>User</li>
+                                    <li>User</li>
+                                    <li>User</li>
+                                    <li>User</li>
+                                    <li>User</li>
+                                    <li>User</li>
+                                    <li>User</li>
+                                    <li>User</li>
                             </ul>
                         </div>
+                                
 
                                 
                     

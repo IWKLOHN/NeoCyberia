@@ -30,7 +30,7 @@ const createProfile = async (req, res) => {
             return res.status(400).json({message: "Profile already exists"});
         }
         if(req.file){
-            profileData.profilePicture = req.file.buffer;
+            profileData.profilePicture = Buffer.from (req.file.buffer, 'base64')
         }
         const profile = await Profile.create(profileData);
         
@@ -41,8 +41,7 @@ const createProfile = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: "Unable to create profile", error });
     }
-}
-
+};
 
 
 

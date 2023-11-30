@@ -27,6 +27,7 @@ const loginUser = async (req, res) => {
                     id: result._id,
                     username: result.username,
                     email: result.email,
+                    profileCreated: result.profileCreated,
                 };
                 const token = jwt.sign(payload, "jwt-secret-key")
                 res.cookie("token", token, {secure: false, sameSite: 'lax'})

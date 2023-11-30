@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './RegisterLoginComponent.module.css';
+import {jwtDecode} from 'jwt-decode';
 
 
 
@@ -75,8 +76,14 @@ export const RegisterLoginComponent = () => {
                 alert('Something went wrong');
                 return;
             }
-            navigate('/main');
+            const decoded = jwtDecode(result.data.token);
             
+            if(decoded.profileCreated === false){
+                navigate('/create-profile');
+                
+            }else{
+                navigate('/main');
+            }
         } catch (error) {
             alert(error);
         }

@@ -11,31 +11,30 @@ import jwt from 'jsonwebtoken';
 
 
 const app = express();
+const server = http.createServer(app); // http server
+const io = new Server(server, {     // socket.io
+    cors: {
+        origin: 'http://localhost:5173',
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        credentials: true
+    }
+}); 
+
+
+// Middleware
+app.use(cookieParser());
+app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
-app.use(express.json());
-
-
 
 // Routes
 app.use(userRoutes.router);
 app.use(profileRoutes.router);
 
-
-
-
-app.use(cookieParser());
-
-const server = http.createServer(app); // http server
-const io = new Server(server, {     // socket.io
-    cors: {
-        origin: 'http://localhost:5173',
-    }
-}); 
-
+// Connect to MongoDB
 mongoose.connect("mongodb://127.0.0.1:27017/neocyberia") // connect to mongodb
 .then(() => {
     console.log('Connected to MongoDB');
@@ -43,6 +42,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/neocyberia") // connect to mongodb
     console.log(err);
 });
 
+
+// Socket.io
 io.on('connection', (socket) => {
     const token = socket.handshake.query.token; // get token from query
     console.log('Token', token);
@@ -69,5 +70,6 @@ io.on('connection', (socket) => {
     })
 });
 
-app.listen(8080 , () => { console.log('CRUD port 8080') });
-server.listen(8081, () => { console.log('Socket.io port 8081') });
+
+// Start server
+server.listen(8080, () => { console.log('Express and Socket.io on port 8080') });
