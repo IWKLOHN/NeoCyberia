@@ -25,8 +25,13 @@ const router = express.Router();
 
 router.post('/create/:id', middlewareJwt.authJwt ,upload.single('profilePicture'),  profileController.createProfile);
 router.get('/getProfile/:id', middlewareJwt.authJwt ,profileController.getProfileById);
-router.get('/getProfiles', profileController.getAllProfiles);
+router.get('/getProfiles', middlewareJwt.authJwt, profileController.getAllProfiles);
 router.put('/updateProfile/:id', middlewareJwt.authJwt ,upload.single('profilePicture'), profileController.updateProfile);
 router.delete('/delete/:id', middlewareJwt.authJwt ,profileController.deleteProfile);
 
+
+
+
+
 export {router};
+

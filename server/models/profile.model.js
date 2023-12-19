@@ -79,15 +79,6 @@ const ProfileSchema = new mongoose.Schema({
         }
     
     },
-    favoriteGenres:{
-        type: [String],
-        validate: {
-            validator: function(v){
-                return v.length <= 3 && v.length >= 1;
-            },
-            message: "At least one genre is required."
-        }
-    },
     favoriteSongs:{
         type: [String],
         validate: {

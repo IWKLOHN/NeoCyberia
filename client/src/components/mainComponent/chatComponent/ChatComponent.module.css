@@ -1,0 +1,132 @@
+.mainContainer{
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background-color: green;
+}
+
+    
+
+
+.handle1{
+    background-color: pink;
+    cursor: move;
+}
+
+.flexContainer{
+    width: 600px;
+    height: 400px;
+    background-color: purple;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.chatContainer{
+    background-color: blue;
+    margin-top: auto;
+}
+
+
+
+.selectorContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    flex-grow: 0.3;
+}
+
+.activeTab{
+    background-color: red;
+    padding: 5px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.tab{
+    background-color: orange;
+    padding: 5px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.tabContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.activeContent{
+    background-color: red;
+}
+
+.content{
+    display: none;
+}
+
+.imgContainer{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 10px;
+    box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.253);
+    border: 2px solid #000;
+}
+
+.imgContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.userFlexContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.userItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.senderStyle {
+    background-color: #f1f0f0;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+    height: auto;
+    word-wrap: break-word;
+    text-align: right;
+}
+
+.recievedStyles {
+    background-color: #929292;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+    height: auto;
+    word-wrap: break-word;
+    text-align: left;
+}
+
+.chatContainer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.messagesContainer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}

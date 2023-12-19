@@ -1,0 +1,308 @@
+.fullWraper{
+    border: 2px solid #000;
+    box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.253);
+    border-radius: 10px;
+}
+
+
+.handle1{
+    background-color: #101115;
+    color: white;
+    cursor: move;
+    transition: color 2s ease-in-out;
+    text-align: center;
+    padding: 10px;
+}
+
+
+
+
+.flexContainer{
+    width: 800px;
+    height: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.userList{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #a3a3a3;
+    flex-grow: 0.3;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+}
+
+
+.selectorContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: #43444d;
+    flex-grow: 0.3;
+}
+
+.selectorContainer::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+/* Show scrollbar when hovering */
+.selectorContainer:hover::-webkit-scrollbar {
+    display: block;
+}
+
+/* Style scrollbar (optional)
+.messagesContainer::-webkit-scrollbar-thumb {
+    background: #888;
+} */
+
+.selectorContainer:hover::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #555;
+}
+
+.activeTab{
+    background-color: #43444d;
+    padding: 5px;
+    cursor: pointer;
+    flex: 1;
+    color: white;
+}
+
+.tab{
+    background-color: orange;
+    padding: 5px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.tabContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.activeContent{
+    background-color: #001aff;
+    color: white;
+    font-weight: 500;
+}
+
+.content{
+    display: none;
+}
+
+.imgContainer{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* margin: 10px; */
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    box-shadow: 3px 3px 6px 3px rgba(0,0,0,0.253);
+    border: 2px solid #000;
+}
+
+.imgContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.userFlexContainer {
+    width: 100%;
+    height: 100%;
+    display: grid auto-flow / 1fr 1fr;
+    /* flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start; */
+    flex-wrap: nowrap;
+
+}
+
+
+
+.userItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.userItem span {
+
+    font-weight: 900;
+}
+
+.senderStyle {
+    background-color: #ebe4db;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+    height: auto;
+    word-wrap: break-word;
+    text-align: right;
+    align-self: flex-end;
+    
+}
+.receivedStyles {
+    background-color: #ccc2bd;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+    height: auto;
+    word-wrap: break-word;
+    text-align: left;
+    align-self: flex-start;
+}
+
+.chatContainer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    background-color: #ffffff;
+
+    background-position: center;
+
+    margin-top: auto;
+    border-left: 1px solid #000;
+    border-top: 1px solid #000;
+    
+}
+
+.messagesContainer{
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.messagesContainer::-webkit-scrollbar {
+    background-color: transparent;
+}
+
+/* Show scrollbar when hovering */
+.messagesContainer:hover::-webkit-scrollbar {
+    display: block;
+}
+
+/* Style scrollbar (optional)
+.messagesContainer::-webkit-scrollbar-thumb {
+    background: #888;
+} */
+
+.messagesContainer:hover::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #555;
+}
+
+.messageListContainer{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    /* align-items: center; */
+
+}
+
+
+.messageInputContainer{
+    height: auto;
+    /* min-height: 50px; */
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+
+.textareaWrapper{
+    flex: 0.9;
+}
+.textareaWrapper textarea{
+    width: 100%;
+    height: 48px;
+    padding: 15px;
+    outline: none;
+    resize: none;
+    /* margin-top: 20px; */
+    border-radius: 10px;
+    border: 2px solid #8c999c;
+    overflow: hidden;
+
+}
+
+textarea:hover {
+    border: 2px solid #101115;
+    box-shadow: 0px 0px 5px 0px rgb(0, 0, 0)000;
+    transition: border 0.2s ease-in-out;
+}
+
+textarea:focus {
+    border: 2px solid #101115;
+    box-shadow: 0px 0px 5px 0px rgb(0, 0, 0)000;
+    transition: border 0.2s ease-in-out;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+        background-color: rgba(255, 255, 255, 0);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        background-color: rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes buzz {
+    0% {
+        transform: translate(0px, 0px) rotate(0deg);
+    }
+    25% {
+        transform: translate(-1px, 1px) rotate(-1deg);
+    }
+    50% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+    75% {
+        transform: translate(-5px, 1px) rotate(-1deg);
+    }
+    100% {
+        transform: translate(1px, -1px) rotate(1deg);
+    }
+}
+
+.userWithNewMessage {
+    margin: 5px;
+    border-radius: 100px;
+    animation: pulse 2s infinite, buzz 0.8s infinite;
+    
+}
+
+.point{
+    background-color: #ff0000;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 5px;
+
+}

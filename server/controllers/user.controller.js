@@ -46,7 +46,7 @@ const loginUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
     try {
-        const users = await User.find();
+        const users = await User.find().populate('profile');
         res.status(200).json({ message: "Users retrieved successfully", users });
     } catch (error) {
         res.status(500).json({ message: "Unable to retrieve users", error });

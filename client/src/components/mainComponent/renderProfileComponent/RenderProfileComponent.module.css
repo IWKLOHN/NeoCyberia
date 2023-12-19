@@ -1,0 +1,14 @@
+.container{
+    position: relative;
+    z-index: 1;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+}
+
+
+.handle1{
+    background-color: blue;
+    cursor: move;
+}

@@ -1,11 +1,15 @@
-input{
-    border: 1px solid black;
-}
+
 
 .mainContainer{
-    display: flex;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     flex-direction: column;
-    background-color: red;
+    width: 30vw;
+    height: 45vh;
+    background-color: #16181C;
+    border-radius: 25px;
 }
 
 
@@ -13,39 +17,125 @@ input{
     display: flex;
 }
 
-.activeTab{
-    flex: 1;
-    background-color: #CFBCDF;
-    padding: 10px;
+.tabContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 50px;
+    background-color: #16181C;
+    border-radius: 25px;
 
+    /* margin-bottom: 20px;
+    margin-top: 20px; */
 }
+
+
+
+
+
+.activeTab{
+    width: 150px;
+    background-color: #E7E9EA;
+    color: #16181C;
+    border: 2px solid #E7E9EA;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+
+
 
 .tab{
-    flex: 1;
-    background-color: #CAB6CD;
-    border: 1px solid black;
+    width: 150px;
+    transition: background-color 0.3s ease-in, color 0.3s ease-in;
+    border: 2px solid #E7E9EA;
+    border-radius: 10px;
     padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+    background-color: #16181C;
+    color: #E7E9EA;
 }
 
+.tab:hover{
 
+    background-color: #E7E9EA;
+    color: #16181C;
+    border: 2px solid #E7E9EA;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.activeContent{
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+
+    background-color: #16181C;
+
+    padding-right:30px;
+    padding-left:30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    
+}
+
+.activeContent > label{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #E7E9EA;
+}
+.activeContent input {
+    background-color: #E7E9EA;
+    color: #16181C;
+    border: 2px solid #E7E9EA;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+
+}
 
 
 .content{
     display: none;
 }
 
-
-
-.activeContent{
-    background-color: #CFBCDF;
-    display: flex;
-    flex-direction: column;
+.activeContent > button{
+    width: 100%;
+    background-color: #16181C;
+    color: #E7E9EA;
+    
+    border: 2px solid #E7E9EA;
+    border-radius: 10px;
     padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
+    margin-top: 50px;
+    transition: background-color 0.3s ease-in, color 0.3s ease-in;
 }
 
-.activeContent > button{
-    border: 1px solid  black;
-    margin-top: 10px;
+.activeContent > button:hover{
+    background-color: #E7E9EA;
+    color: #16181C;
+    border: 2px solid #E7E9EA;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    cursor: pointer;
 }
 
 .modal, .overlay{

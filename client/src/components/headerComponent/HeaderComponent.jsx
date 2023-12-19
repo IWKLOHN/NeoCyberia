@@ -1,6 +1,6 @@
 import axios from 'axios';
 import styles from './headerComponent.module.css';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
 import {jwtDecode} from 'jwt-decode';
@@ -13,6 +13,10 @@ export const HeaderComponent = () => {
     
     const [data, setData] = useState([]);
     
+    const goToProfile = (userId) => {
+        navigate('/profile/' + userId);
+    };
+
     
     const handleLogout = () => {
         document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
@@ -26,7 +30,7 @@ export const HeaderComponent = () => {
         try {
             let result = await axios.get(`http://localhost:8080/getUserAndProfileById/${userId}`,
                 {headers: {"Authorization": `Bearer ${token}`}}); 
-            console.log(result);
+            //console.log(result);
             const profilePictureUrl = result.data.user.profile.profilePictureUrl || null;
             const profilePicture = result.data.user.profile.profilePicture ? result.data.user.profile.profilePicture.data : null;
             //const profilePicture = result.data.user.profile.profilePicture.data
@@ -44,16 +48,7 @@ export const HeaderComponent = () => {
             console.log(error);
         }
     };
-            
-            
     
-            
-    
-            
-    
-            
-    
-
 
     useEffect(() => {
         getUserAndProfile();
@@ -67,10 +62,10 @@ export const HeaderComponent = () => {
         <header className={styles.mainContainer}>
             <nav className={styles.navContainer}>
                 <div className={styles.left}>
-                    <a className={styles.imgContainer} href=''>
+                <Link className={styles.imgContainer} to={`/main/profile/${data?.user?._id}`}>
                         <img src={data.profilePicture ? data.profilePicture : data.profilePictureUrl}
                             alt='Profile Picture' />
-                    </a>
+                    </Link>
                     {data.user &&<a href=''>{data.user.username}</a>}
                 </div>
                 <h1 className={styles.center}>Neo Cyberia</h1>
@@ -79,3 +74,11 @@ export const HeaderComponent = () => {
         </header>
     )
 };
+            
+    
+            
+    
+            
+    
+            
+    

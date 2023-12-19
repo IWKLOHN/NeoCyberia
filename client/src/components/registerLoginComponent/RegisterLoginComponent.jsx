@@ -36,6 +36,7 @@ export const RegisterLoginComponent = () => {
             return;
         }
         try {
+            
             let newUser = {
                 "username": username,
                 "email": email,
@@ -104,9 +105,17 @@ export const RegisterLoginComponent = () => {
             {/* TABS */ }
             <div className={styles.tabContainer}>
                 <button onClick={() => tabSwitch(1)} 
-                    className={activeTab === 1 ? styles.activeTab : styles.tab}>Login</button>
+                        className={activeTab === 1 
+                            ? styles.activeTab 
+                            : styles.tab}>
+                    Login
+                </button>
                 <button onClick={() => tabSwitch(2)} 
-                    className={activeTab === 2 ? styles.activeTab : styles.tab}>Register</button>
+                        className={activeTab === 2 
+                            ? styles.activeTab 
+                            : styles.tab}>
+                    Register
+                </button>
             </div>
                 
                 
@@ -115,44 +124,48 @@ export const RegisterLoginComponent = () => {
                 {/* LOGIN */ }
             
                 <form onSubmit={handleLogin} 
-                    className={activeTab === 1 ? styles.activeContent : styles.content}>
+                        className={activeTab === 1 
+                            ? styles.activeContent 
+                            : styles.content}>
                     <label htmlFor="loginInput">Username or Email:</label>
-                        <input type="text" 
-                            placeholder='Enter Username or Email'
-                            value={loginInput} 
-                            onChange={(e) => setLoginInput(e.target.value)} />
+                        <input  type="text" 
+                                placeholder='Enter Username or Email'
+                                value={loginInput} 
+                                onChange={(e) => setLoginInput(e.target.value)} />
                     <label htmlFor="loginPassword">Password:</label>
-                        <input type="password" 
-                            placeholder='Enter Password'
-                            value={loginPassword} 
-                            onChange={(e) => setLoginPassword(e.target.value)} />
+                        <input  type="password" 
+                                placeholder='Enter Password'
+                                value={loginPassword} 
+                                onChange={(e) => setLoginPassword(e.target.value)} />
                     <button>Login</button>
                 </form>
                                     
                 
                 {/* REGISTER */ }
                 <form onSubmit={handleRegister} 
-                    className={ activeTab === 2 ? styles.activeContent : styles.content} >
-                    <label htmlFor="username">Username:</label>
-                        <input type="text" 
-                            placeholder='Enter Username'
-                            value={username} 
-                            onChange={(e) => setUsername(e.target.value)} />
+                    className={ activeTab === 2 
+                        ? styles.activeContent 
+                        : styles.content} >
+                    <label className={styles.labelInput} htmlFor="username">Username:</label>
+                        <input  type="text" 
+                                placeholder='Enter Username'
+                                value={username} 
+                                onChange={(e) => setUsername(e.target.value)} />
                     <label htmlFor="email">Email:</label>
                         <input type="email" 
-                            placeholder='Enter Email'
-                            value={email} 
-                            onChange={(e) => setEmail(e.target.value)} />
+                                placeholder='Enter Email'
+                                value={email} 
+                                onChange={(e) => setEmail(e.target.value)} />
                     <label htmlFor="password">Password:</label>
-                        <input type="password" 
-                            placeholder='Enter Password'
-                            value={password} 
-                            onChange={(e) => setPassword(e.target.value)} />
+                        <input  type="password" 
+                                placeholder='Enter Password'
+                                value={password} 
+                                onChange={(e) => setPassword(e.target.value)} />
                     <label htmlFor="confirmPassword">Confirm Password:</label>
-                        <input type="password" 
-                            placeholder='Confirm Password'
-                            value={confirmPassword} 
-                            onChange={(e) => setConfirmPassword(e.target.value)} />
+                        <input  type="password" 
+                                placeholder='Confirm Password'
+                                value={confirmPassword} 
+                                onChange={(e) => setConfirmPassword(e.target.value)} />
                     <button>Register</button>
                 </form>
 

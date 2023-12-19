@@ -5,17 +5,6 @@ import mongoose from "mongoose";
 
 
 
-/*const createProfile = async (req, res) => {
-    try {
-        const profileData = req.body;
-        if(req.file){
-            profileData.profilePicture = req.file.buffer;
-        }
-        const profile = await Profile.create(profileData);
-    } catch (error) {
-        res.status(500).json({ message: "Unable to create profile", error });
-    }
-};*/
 
 
 const createProfile = async (req, res) => {
@@ -83,6 +72,11 @@ const updateProfile = async (req, res) => {
     try {
         const profileId = req.params.id;
         const profileData = req.body;
+
+        profileData.languages = JSON.parse(profileData.languages);
+        
+        
+
         if(req.file){
             profileData.profilePicture = req.file.buffer;
         }

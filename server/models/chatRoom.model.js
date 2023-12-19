@@ -1,17 +1,18 @@
 
 import mongoose from 'mongoose';
 
+
+const ChatRoomMessageSchema = new mongoose.Schema({
+    senderId: { type: mongoose.Schema.Types.ObjectId, ref: 'users'},
+    text: { type: String},
+    file: { type: String},
+    timestamp: { type: Date, default: Date.now},
+},{_id: false, timestamps: true});
+
+
 const ChatRoomSchema = new mongoose.Schema({
-    witchHouse:[{type: mongoose.Schema.Types.ObjectId, ref: 'users', text: String, file: String, timestamp: Date}],
-    hiphop:[{type: mongoose.Schema.Types.ObjectId, ref: 'users', text: String, file: String, timestamp: Date}],
-    pop:[{type: mongoose.Schema.Types.ObjectId, ref: 'users', text: String, file: String, timestamp: Date}],
-    rock:[{type: mongoose.Schema.Types.ObjectId, ref: 'users', text: String, file: String, timestamp: Date}],
-    jazz:[{type: mongoose.Schema.Types.ObjectId, ref: 'users', text: String, file: String, timestamp: Date}],
-    classical:[{type: mongoose.Schema.Types.ObjectId, ref: 'users', text: String, file: String, timestamp: Date}],
-    kpop:[{type: mongoose.Schema.Types.ObjectId, ref: 'users', text: String, file: String, timestamp: Date}],
-    edm:[{type: mongoose.Schema.Types.ObjectId, ref: 'users', text: String, file: String, timestamp: Date}],
-    indie:[{type: mongoose.Schema.Types.ObjectId, ref: 'users', text: String, file: String, timestamp: Date}],
-    metal:[{type: mongoose.Schema.Types.ObjectId, ref: 'users', text: String, file: String, timestamp: Date}],
+    name:{ type: String},
+    messages: [ChatRoomMessageSchema],
 
 } , {timestamps: true});
 
@@ -19,3 +20,11 @@ const ChatRoomSchema = new mongoose.Schema({
 const ChatRoom = mongoose.model('chatRooms', ChatRoomSchema);
 
 export default ChatRoom;
+
+
+
+
+
+
+
+
